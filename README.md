@@ -48,5 +48,5 @@ $snippetJson = @'
 '@
 $newResource = $snippetJson | ConvertFrom-Json
 $armTemplate.resources += $newResource
-$armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\template_WUS-P66-L-ImageINV.json' -Force
+$armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\template_ImageINV.json' -Force
 ```
