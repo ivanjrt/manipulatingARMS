@@ -50,3 +50,17 @@ $newResource = $snippetJson | ConvertFrom-Json
 $armTemplate.resources += $newResource
 $armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\template_ImageINV.json' -Force
 ```
+
+
+# This will edit a spefic Value within:
+```Javascript
+$templatePath  = 'C:\temp5\templateImage.json'
+$armTemplate   = Get-Content -Path $templatePath -Raw | ConvertFrom-Json
+
+$lineChange = "$($partOfLine)$($middleLine)$($endLine)"
+
+$templatePath = $armTemplate.resources | Where-Object {$_.type -eq 'Microsoft.Compute/virtualMachines'}
+$templatePath.properties.storageProfile.imageReference.id = $lineChange
+
+$armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\template_WUS-P66-L-ImageINV.json' -Force
+```
