@@ -62,5 +62,5 @@ $lineChange = "$($partOfLine)$($middleLine)$($endLine)"
 $templatePath = $armTemplate.resources | Where-Object {$_.type -eq 'Microsoft.Compute/virtualMachines'}
 $templatePath.properties.storageProfile.imageReference.id = $lineChange
 
-$armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\template_WUS-P66-L-ImageINV.json' -Force
+$armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\templateImageINV.json' -Force
 ```
