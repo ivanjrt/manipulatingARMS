@@ -57,9 +57,9 @@ $armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.Regular
 $templatePath  = 'C:\temp5\templateImage.json'
 $armTemplate   = Get-Content -Path $templatePath -Raw | ConvertFrom-Json
 
-$lineChange = "$($partOfLine)$($middleLine)$($endLine)"
+$lineChange    = -join "$($partOfLine)$($middleLine)$($endLine)"
 
-$templatePath = $armTemplate.resources | Where-Object {$_.type -eq 'Microsoft.Compute/virtualMachines'}
+$templatePath  = $armTemplate.resources | Where-Object {$_.type -eq 'Microsoft.Compute/virtualMachines'}
 $templatePath.properties.storageProfile.imageReference.id = $lineChange
 
 $armTemplate | ConvertTo-Json -Depth 100 | ForEach-Object { [System.Text.RegularExpressions.Regex]::Unescape($_) } | Set-Content -Path 'C:\temp5\templateImageINV.json' -Force
